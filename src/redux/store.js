@@ -2,7 +2,7 @@ import { authReducer } from './auth/auth-slice';
 
 import { configureStore } from '@reduxjs/toolkit';
 import { counterSlice } from './contactsSlice';
-import { authSlice } from './auth/auth-slice';
+
 import {
   persistStore,
   persistReducer,
@@ -25,7 +25,6 @@ export const store = configureStore({
   reducer: {
     phoneBook: counterSlice.reducer,
     auth: persistReducer(authPersistConfig, authReducer),
-    // auth: authSlice.reducer,
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({
