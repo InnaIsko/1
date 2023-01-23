@@ -1,7 +1,7 @@
 import { Routes, Route } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-// import { selectIsLoading, selectIsError } from 'redux/selectors';
+
 // import { lazy } from 'react';
 import { PrivateRoute } from './PrivateRoute';
 import { RestrictedRoute } from './RestrictedRoute';
@@ -21,8 +21,6 @@ import { Contacts } from '../pages/Contacts';
 
 export function App() {
   const dispatch = useDispatch();
-  // const isLoading = useSelector(selectIsLoading);
-  // const error = useSelector(selectIsError);
 
   useEffect(() => {
     dispatch(refreshCurrentUser());
@@ -47,8 +45,6 @@ export function App() {
           path="/contacts"
           element={<PrivateRoute component={Contacts} redirectTo="/login" />}
         />
-        {/* {isLoading && !error && <b>Request in progress...</b>}
-        {error && <b>Sorry,{error}</b>} */}
       </Routes>
     </>
   );

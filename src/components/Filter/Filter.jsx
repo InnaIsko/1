@@ -1,7 +1,9 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { selectFilter } from 'redux/selectors';
-import { LabelFilter, InputFilter } from './Filter.styled';
 import { getValue } from 'redux/contactsSlice';
+
+import { IconButton, FilledInput, InputLabel } from '@mui/material';
+import PersonSearchIcon from '@mui/icons-material/PersonSearch';
 
 export function Filter() {
   const filterName = useSelector(selectFilter);
@@ -12,14 +14,42 @@ export function Filter() {
     dispatch(getValue(event.currentTarget.value));
   };
   return (
-    <LabelFilter>
-      Find contacts by name
-      <InputFilter
-        type="text"
-        name="filter"
-        value={filterName}
-        onChange={getInputValue}
-      />
-    </LabelFilter>
+    <>
+      <InputLabel
+        sx={{
+          m: 3,
+          color: '#57AAA2',
+          fontFamily: 'Explora',
+          fontWeight: 600,
+          fontSize: 18,
+          letterSpacing: '.1rem',
+        }}
+      >
+        Find contacts by name
+        <IconButton
+          sx={{
+            ml: 2,
+            color: '#EFE7D6',
+            backgroundColor: '#57AAA2',
+          }}
+        >
+          <PersonSearchIcon />
+        </IconButton>
+        <FilledInput
+          type="text"
+          name="filter"
+          size="small"
+          value={filterName}
+          onChange={getInputValue}
+          sx={{
+            m: 3,
+            fontFamily: 'Explora',
+            fontWeight: 600,
+            width: 250,
+            color: '#57fv5',
+          }}
+        />
+      </InputLabel>
+    </>
   );
 }

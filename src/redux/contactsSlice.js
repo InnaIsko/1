@@ -56,4 +56,4 @@ export const counterSlice = createSlice({
     },
   },
 });
-export const { getValue } = counterSlice.reducer;
+export const { getValue } = counterSlice.actions;

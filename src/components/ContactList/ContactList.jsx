@@ -5,6 +5,8 @@ import { selectContacts, selectFilter } from 'redux/selectors';
 import { fetchContacts } from 'redux/operations';
 import { useEffect } from 'react';
 
+import { List } from '@mui/material';
+
 export function ContactList() {
   const contacts = useSelector(selectContacts);
   const filterValue = useSelector(selectFilter);
@@ -20,11 +22,11 @@ export function ContactList() {
 
   return (
     <>
-      <ul>
+      <List sx={{ width: '100%', ml: 3 }}>
         {filter.map(contact => (
           <ContactListItem onContactInfo={contact} key={contact.id} />
         ))}
-      </ul>
+      </List>
     </>
   );
 }
