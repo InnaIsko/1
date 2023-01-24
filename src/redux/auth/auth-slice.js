@@ -6,6 +6,12 @@ const initialState = {
   token: null,
   isLoggedIn: false,
   isRefreshing: false,
+  error: null,
+};
+
+const handleRejected = (state, action) => {
+  state.isLoggedIn = false;
+  state.error = action.payload;
 };
 
 export const authSlice = createSlice({
@@ -18,18 +24,21 @@ export const authSlice = createSlice({
       state.token = action.payload.token;
       state.isLoggedIn = true;
     },
+    [register.rejected]: handleRejected,
     //Авторизація
     [logIn.fulfilled](state, action) {
       state.user = action.payload.user;
       state.token = action.payload.token;
       state.isLoggedIn = true;
     },
+    [logIn.rejected]: handleRejected,
     //Вихід з облікового запису
     [logOut.fulfilled](state) {
       state.user = { name: null, email: null };
       state.token = null;
       state.isLoggedIn = false;
     },
+    [logOut.rejected]: handleRejected,
     //перевірка при оновлені
     [refreshCurrentUser.fulfilled](state, action) {
       state.user = action.payload;
@@ -39,7 +48,7 @@ export const authSlice = createSlice({
     [refreshCurrentUser.pending](state) {
       state.isRefreshing = true;
     },
-    [refreshCurrentUser.rejected](state) {
+    [refreshCurrentUser.rejected](state, action) {
       state.isRefreshing = false;
     },
   },

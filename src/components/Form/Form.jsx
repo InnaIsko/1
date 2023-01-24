@@ -5,13 +5,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import { selectContacts } from 'redux/selectors';
 import { addContacts } from 'redux/operations';
 
-import {
-  FilledInput,
-  InputLabel,
-  Box,
-  Button,
-  Typography,
-} from '@mui/material';
+import { FilledInput, InputLabel, Box, Button, Alert } from '@mui/material';
+
 import PersonAddAlt1Icon from '@mui/icons-material/PersonAddAlt1';
 
 export function ContactForm() {
@@ -20,6 +15,12 @@ export function ContactForm() {
 
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
+
+  const nameValue = contacts.some(
+    elem => elem.name.toLowerCase() === name.toLowerCase()
+  );
+
+  const numberValue = contacts.some(elem => elem.number === number);
 
   const getInputValue = event => {
     switch (event.currentTarget.name) {
@@ -39,10 +40,10 @@ export function ContactForm() {
   const handleSabmit = event => {
     event.preventDefault();
 
-    const nameValue = contacts.some(elem => elem.name === name);
-
-    if (nameValue) {
-      alert(`${name} is olredi in contacts`);
+    if (nameValue || numberValue) {
+      setName('');
+      setNumber('');
+      return;
     } else {
       const contactInfo = { name, number, id: nanoid() };
       dispatch(addContacts(contactInfo));
@@ -55,6 +56,16 @@ export function ContactForm() {
 
   return (
     <>
+      {nameValue && (
+        <Alert variant="outlined" severity="error">
+          Sorry, but a contact with that name already exists!
+        </Alert>
+      )}
+      {numberValue && (
+        <Alert variant="outlined" severity="error">
+          Sorry, but a contact with that number already exists!
+        </Alert>
+      )}
       <form onSubmit={handleSabmit}>
         <Box
           sx={{

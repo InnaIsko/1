@@ -45,7 +45,6 @@ export function Filter() {
           fontFamily: 'Explora',
           fontWeight: 600,
           width: 250,
-          color: '#57fv5',
         }}
       />
     </InputLabel>

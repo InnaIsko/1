@@ -34,20 +34,22 @@ export function Navigation() {
             Home
           </Link>
           {isLoggedIn && (
-            <Link
-              variant="h6"
-              component={NavLink}
-              to="/contacts"
-              sx={{
-                fontFamily: 'Explora',
-                fontWeight: 700,
-                letterSpacing: '.3rem',
-                color: '#EFE7D6',
-                textDecoration: 'none',
-              }}
-            >
-              Contacts
-            </Link>
+            <>
+              <Link
+                variant="h6"
+                component={NavLink}
+                to="/contacts"
+                sx={{
+                  fontFamily: 'Explora',
+                  fontWeight: 700,
+                  letterSpacing: '.3rem',
+                  color: '#EFE7D6',
+                  textDecoration: 'none',
+                }}
+              >
+                Contacts
+              </Link>
+            </>
           )}
           {!isLoggedIn && (
             <Link

@@ -1,4 +1,5 @@
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectError } from 'redux/auth/auth-selector';
 import { useState } from 'react';
 import { register } from 'redux/auth/auth-operations';
 
@@ -9,6 +10,7 @@ import {
   InputLabel,
   Box,
   Button,
+  Alert,
 } from '@mui/material';
 import HowToRegIcon from '@mui/icons-material/HowToReg';
 import Visibility from '@mui/icons-material/Visibility';
@@ -17,6 +19,9 @@ import VisibilityOff from '@mui/icons-material/VisibilityOff';
 export const RegisterForm = () => {
   const dispatch = useDispatch();
   const [showPassword, setShowPassword] = useState(false);
+
+  const error = useSelector(selectError);
+  console.log(error);
 
   const handleClickShowPassword = () => setShowPassword(show => !show);
 
@@ -35,6 +40,11 @@ export const RegisterForm = () => {
 
   return (
     <form onSubmit={handleSubmit} autoComplete="off">
+      {error && (
+        <Alert variant="outlined" severity="error">
+          Sorry, you have made a mistake, try again!
+        </Alert>
+      )}
       <Box
         sx={{
           display: 'flex',
