@@ -14,42 +14,40 @@ export function Filter() {
     dispatch(getValue(event.currentTarget.value));
   };
   return (
-    <>
-      <InputLabel
+    <InputLabel
+      sx={{
+        mt: 10,
+        color: '#57AAA2',
+        fontFamily: 'Explora',
+        fontWeight: 600,
+        fontSize: 18,
+        letterSpacing: '.1rem',
+      }}
+    >
+      Find contacts by name
+      <IconButton
         sx={{
-          m: 3,
-          color: '#57AAA2',
-          fontFamily: 'Explora',
-          fontWeight: 600,
-          fontSize: 18,
-          letterSpacing: '.1rem',
+          ml: 2,
+          color: '#EFE7D6',
+          backgroundColor: '#57AAA2',
         }}
       >
-        Find contacts by name
-        <IconButton
-          sx={{
-            ml: 2,
-            color: '#EFE7D6',
-            backgroundColor: '#57AAA2',
-          }}
-        >
-          <PersonSearchIcon />
-        </IconButton>
-        <FilledInput
-          type="text"
-          name="filter"
-          size="small"
-          value={filterName}
-          onChange={getInputValue}
-          sx={{
-            m: 3,
-            fontFamily: 'Explora',
-            fontWeight: 600,
-            width: 250,
-            color: '#57fv5',
-          }}
-        />
-      </InputLabel>
-    </>
+        <PersonSearchIcon />
+      </IconButton>
+      <FilledInput
+        type="text"
+        name="filter"
+        size="small"
+        value={filterName}
+        onChange={getInputValue}
+        sx={{
+          m: 3,
+          fontFamily: 'Explora',
+          fontWeight: 600,
+          width: 250,
+          color: '#57fv5',
+        }}
+      />
+    </InputLabel>
   );
 }
