@@ -1,5 +1,5 @@
-import { useDispatch } from 'react-redux';
-import { useState, useSelector } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useState } from 'react';
 import { selectError } from 'redux/auth/auth-selector';
 import { logIn } from 'redux/auth/auth-operations';
 
