@@ -1,5 +1,6 @@
 import { useDispatch } from 'react-redux';
-import { useState } from 'react';
+import { useState, useSelector } from 'react';
+import { selectError } from 'redux/auth/auth-selector';
 import { logIn } from 'redux/auth/auth-operations';
 
 import {
@@ -9,6 +10,7 @@ import {
   InputLabel,
   Box,
   Button,
+  Alert,
 } from '@mui/material';
 import LoginIcon from '@mui/icons-material/Login';
 import Visibility from '@mui/icons-material/Visibility';
@@ -17,6 +19,8 @@ import VisibilityOff from '@mui/icons-material/VisibilityOff';
 export const LoginForm = () => {
   const dispatch = useDispatch();
   const [showPassword, setShowPassword] = useState(false);
+
+  const error = useSelector(selectError);
 
   const handleClickShowPassword = () => setShowPassword(show => !show);
 
@@ -34,6 +38,11 @@ export const LoginForm = () => {
 
   return (
     <form onSubmit={handleSubmit} autoComplete="off">
+      {error && (
+        <Alert variant="outlined" severity="error">
+          Sorry, you have made a mistake, try again!
+        </Alert>
+      )}
       <Box
         sx={{
           display: 'flex',

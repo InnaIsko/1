@@ -21,7 +21,6 @@ export const RegisterForm = () => {
   const [showPassword, setShowPassword] = useState(false);
 
   const error = useSelector(selectError);
-  console.log(error);
 
   const handleClickShowPassword = () => setShowPassword(show => !show);
 
